@@ -12,6 +12,8 @@ import 'package:provider_app/pages/menus/second_page.dart';
 import 'package:provider_app/pages/settings/settings_detail_page.dart';
 import 'package:provider_app/pages/settings/settings_page.dart';
 
+bool routed = true;
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -23,11 +25,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<User>(
           create: (context) => User(),
         ),
-        // ChangeNotifierProvider<Phone>(
-        //   create: (context) => Phone(),
-        // )
+        ChangeNotifierProvider<Phone>(
+          create: (context) => Phone()
+        ),
       ],
-      child: ChangeNotifierProvider(
+      child: routed
+        ? ChangeNotifierProvider(
         create: (context) => Book(),
         child: MaterialApp(
           title: 'Flutter Demo',
@@ -45,7 +48,17 @@ class MyApp extends StatelessWidget {
             '/second/detail': (context) => SecondDetailpage(),
             '/menus': (context) => MenuPage()          
           },
-        ),
+          )
+        ) 
+        : ChangeNotifierProvider(
+        create: (context) => Book(),
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: LoginPage(),
+        ) ,
       ),
     );
   }

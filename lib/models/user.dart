@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider_app/models/role.dart';
 
 class User extends ChangeNotifier {
+  static String address;
+  static int count;
+
   String _name;
   get name => _name;
   set name(String name) {

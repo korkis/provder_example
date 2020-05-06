@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:provider_app/models/user.dart';
 
 class SettingsDetailPage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     User user = Provider.of<User>(context);
@@ -10,14 +11,21 @@ class SettingsDetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('SettingsDetail'),),      
       body: Center(
-        child: Text('SettingsDetail user.name:${user.name ?? 'null'}'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('사용자: ${user.name ?? 'null'}'),
+            Text('주소: ${User.address ?? 'null'}'),
+          ],
+        ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   child: Text('상세세팅'),
-      //   onPressed: () {
-      //     Navigator.pushNamed(context, '/settings/detail');
-      //   },
-      // ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          User.count++;
+          // Navigator.pushNamed(context, '/settings/detail');
+        },
+      ),
     );
   }
 }

@@ -23,7 +23,9 @@ class MenuPage extends StatelessWidget {
           ),
           body: TabBarView(
             children: [
-              FirstPage(),
+              ChangeNotifierProvider(
+                create: (context) => Phone(),
+                child: FirstPage()),
               SecondPage()
             ],
           ),
