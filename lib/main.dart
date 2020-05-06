@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
           ),
           initialRoute: '/',
-          routes: {
+          routes: { 
             '/': (context) => LoginPage(),       
             '/settings': (context) => SettingsPage(),
             '/settings/detail': (context) => SettingsDetailPage(),
