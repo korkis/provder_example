@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:provider_app/models/book.dart';
+import 'package:provider_app/models/phone.dart';
 import 'package:provider_app/models/user.dart';
 import 'package:provider_app/pages/login_page.dart';
 import 'package:provider_app/pages/menu_page.dart';
@@ -18,26 +20,32 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<User>(
+        ChangeNotifierProvider<User>(
           create: (context) => User(),
-        )
-      ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
         ),
-        initialRoute: '/',
-        routes: {
-          '/': (context) => LoginPage(),       
-          '/settings': (context) => SettingsPage(),
-          '/settings/detail': (context) => SettingsDetailPage(),
-          '/first': (context) => FirstPage(),
-          '/first/detail': (context) => FirstDetailPage(),
-          '/second': (context) => SecondPage(),
-          '/second/detail': (context) => SecondDetailpage(),
-          '/menus': (context) => MenuPage()          
-        },
+        // ChangeNotifierProvider<Phone>(
+        //   create: (context) => Phone(),
+        // )
+      ],
+      child: ChangeNotifierProvider(
+        create: (context) => Book(),
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          initialRoute: '/',
+          routes: {
+            '/': (context) => LoginPage(),       
+            '/settings': (context) => SettingsPage(),
+            '/settings/detail': (context) => SettingsDetailPage(),
+            '/first': (context) => FirstPage(),
+            '/first/detail': (context) => FirstDetailPage(),
+            '/second': (context) => SecondPage(),
+            '/second/detail': (context) => SecondDetailpage(),
+            '/menus': (context) => MenuPage()          
+          },
+        ),
       ),
     );
   }
