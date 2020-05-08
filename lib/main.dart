@@ -5,6 +5,7 @@ import 'package:provider_app/models/phone.dart';
 import 'package:provider_app/models/user.dart';
 import 'package:provider_app/pages/login_page.dart';
 import 'package:provider_app/pages/menu_page.dart';
+import 'package:provider_app/pages/menus/first_detail_detail_page.dart';
 import 'package:provider_app/pages/menus/first_detail_page.dart';
 import 'package:provider_app/pages/menus/first_page.dart';
 import 'package:provider_app/pages/menus/second_detail_page.dart';
@@ -12,7 +13,7 @@ import 'package:provider_app/pages/menus/second_page.dart';
 import 'package:provider_app/pages/settings/settings_detail_page.dart';
 import 'package:provider_app/pages/settings/settings_page.dart';
 
-bool routed = true;
+bool routed = false;
 
 void main() => runApp(MyApp());
 
@@ -25,9 +26,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<User>(
           create: (context) => User(),
         ),
-        ChangeNotifierProvider<Phone>(
-          create: (context) => Phone()
-        ),
+        // ChangeNotifierProvider<Phone>(
+        //   create: (context) => Phone()
+        // ),
       ],
       child: routed
         ? ChangeNotifierProvider(
@@ -43,7 +44,11 @@ class MyApp extends StatelessWidget {
             '/settings': (context) => SettingsPage(),
             '/settings/detail': (context) => SettingsDetailPage(),
             '/first': (context) => FirstPage(),
-            '/first/detail': (context) => FirstDetailPage(),
+            '/first/detail': (context) => ChangeNotifierProvider(
+              create: (context) => Phone(),
+              child: FirstDetailPage()
+            ),
+            '/first/detail/detail': (context) => FirstDetailDetailPage(),
             '/second': (context) => SecondPage(),
             '/second/detail': (context) => SecondDetailpage(),
             '/menus': (context) => MenuPage()          

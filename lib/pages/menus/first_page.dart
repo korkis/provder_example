@@ -8,7 +8,7 @@ import '../../main.dart';
 class FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Phone phone = Provider.of<Phone>(context);
+    Phone phone = Provider.of<Phone>(context);
     // phone.name = '갤럭시';
 
      return ChangeNotifierProvider(
@@ -24,15 +24,15 @@ class FirstPage extends StatelessWidget {
               if(routed) {
                 Navigator.pushNamed(context, '/first/detail');
               } else {
-                // Navigator.push(context, MaterialPageRoute(
-                //   builder: (context) => ChangeNotifierProvider(
-                //     create: (context) => Phone(),
-                //     child: FirstDetailPage())
-                // ));
-
                 Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => FirstDetailPage()
+                  builder: (context) => ChangeNotifierProvider.value(
+                    value: phone,
+                    child: FirstDetailPage())
                 ));
+
+                // Navigator.push(context, MaterialPageRoute(
+                //   builder: (context) => FirstDetailPage()
+                // ));
               }
             },
           ),
